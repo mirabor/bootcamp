@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardViewer.css';
-import { NavLink } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 class CardViewer extends React.Component {
   constructor(props) {
@@ -41,7 +41,9 @@ class CardViewer extends React.Component {
             </button>
           </div>
           <div>
-            <NavLink to="/editor">Go to card editor</NavLink>
+            <Routes>
+              <Route path="/editor" element={<span>Go to card editor</span>} />
+            </Routes>
           </div>
         </div>
         <hr />
