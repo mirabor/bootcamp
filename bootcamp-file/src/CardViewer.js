@@ -1,71 +1,67 @@
 import React from 'react';
-import './CardViewer.css';
+import './CardEditor.css';
+import { Link } from 'react-router-dom';
 
-class CardViewer extends React.Component {
-  state = {
-    isFrontVisible: true,
+class CardEditor extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { front: '', back: '' };
+  }
+
+  addCard = () => {
+    this.props.addCard(this.state);
+    this.setState({ front: '', back: '' });
   };
 
-  handleCardClick = () => {
-    this.setState((prevState) => ({ isFrontVisible: !prevState.isFrontVisible }));
-  };
+  deleteCard = index => this.props.deleteCard(index);
+
+  handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   render() {
-    const {
-      cardIndex,
-      totalCards,
-      currentCard,
-      switchMode,
-      goToNextCard,
-      goToPrevCard,
-    } = this.props;
-
-    const isNextDisabled = cardIndex === totalCards - 1;
-    const isPrevDisabled = cardIndex === 0;
+    const cards = this.props.cards.map((card, index) => {
+      return (
+        <tr key={index}>
+          <td>{card.front}</td>
+          <td>{card.back}</td>
+          <td>
+            <button onClick={() => this.deleteCard(index)}>Delete card</button>
+          </td>
+        </tr>
+      );
+    });
 
     return (
       <div>
-        <h2>Card Viewer</h2>
+        <h2>Card Editor</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Front</th>
+              <th>Back</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>{cards}</tbody>
+        </table>
+        <br />
+        <input
+          name="front"
+          onChange={this.handleChange}
+          placeholder="Front of card"
+          value={this.state.front}
+        />
+        <input
+          name="back"
+          onChange={this.handleChange}
+          placeholder="Back of card"
+          value={this.state.back}
+        />
+        <button onClick={this.addCard}>Add card</button>
         <hr />
-        <div>
-          <div>{`Card ${cardIndex + 1}/${totalCards}`}</div>
-          <div>
-            <button onClick={goToPrevCard} disabled={isPrevDisabled}>
-              Previous Card
-            </button>
-            <button onClick={goToNextCard} disabled={isNextDisabled}>
-              Next Card
-            </button>
-          </div>
-          <div>
-            <button onClick={switchMode}>Go to card editor</button>
-          </div>
-        </div>
-        <hr />
-        <div className={`flashcard ${this.state.isFrontVisible ? 'front' : 'back'}`} onClick={this.handleCardClick}>
-          <div className="flashcard-content">
-            <div className="text">
-              {this.state.isFrontVisible ? (
-                <React.Fragment>
-                  <div className="front-content">
-                    <h3 className="flashcard-title">Front card</h3>
-                    <p>{currentCard.front}</p>
-                  </div>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <div className="back-content">
-                    <h3 className="flashcard-title">Back card</h3>
-                    <p>{currentCard.back}</p>
-                  </div>
-                </React.Fragment>
-              )}
-            </div>
-          </div>
-        </div>
+        <Link to="/viewer">Go to card viewer</Link>
       </div>
     );
   }
 }
 
-export default CardViewer;
+export default CardEditor;

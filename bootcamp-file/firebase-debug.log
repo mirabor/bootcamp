@@ -196,3 +196,41 @@ Before we get started, keep in mind:
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
 [error] 
 [error] Error: Failed to get Firebase project bootcamp-ce748. Please make sure the project exists and your account has permission to access it.
+[debug] [2023-11-28T05:15:45.060Z] ----------------------------------------------------------------------
+[debug] [2023-11-28T05:15:45.061Z] Command:       /Users/mirayu/.nvm/versions/node/v16.20.2/bin/node /usr/local/bin/firebase deploy
+[debug] [2023-11-28T05:15:45.062Z] CLI Version:   12.8.1
+[debug] [2023-11-28T05:15:45.062Z] Platform:      darwin
+[debug] [2023-11-28T05:15:45.062Z] Node Version:  v16.20.2
+[debug] [2023-11-28T05:15:45.068Z] Time:          Tue Nov 28 2023 00:15:45 GMT-0500 (Eastern Standard Time)
+[debug] [2023-11-28T05:15:45.068Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-11-28T05:15:45.072Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2023-11-28T05:15:45.155Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-11-28T05:15:45.155Z] > authorizing via signed-in user (mirayu@college.harvard.edu)
+[debug] [2023-11-28T05:15:45.156Z] [iam] checking project bootcamp-ce748 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-11-28T05:15:45.157Z] > refreshing access token with scopes: []
+[debug] [2023-11-28T05:15:45.158Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-11-28T05:15:45.158Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-28T05:15:45.279Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-11-28T05:15:45.279Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-11-28T05:15:45.296Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/bootcamp-ce748:testIamPermissions [none]
+[debug] [2023-11-28T05:15:45.296Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/bootcamp-ce748:testIamPermissions x-goog-quota-user=projects/bootcamp-ce748
+[debug] [2023-11-28T05:15:45.296Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bootcamp-ce748:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-11-28T05:15:45.299Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2023-11-28T05:15:45.299Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2023-11-28T05:15:45.776Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/bootcamp-ce748:testIamPermissions 200
+[debug] [2023-11-28T05:15:45.776Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/bootcamp-ce748:testIamPermissions {}
+[debug] [2023-11-28T05:15:45.776Z] [iam] error while checking permissions, command may fail: FirebaseError: Authorization failed. This account is missing the following required permissions on project bootcamp-ce748:
+
+  firebase.projects.get
+  firebasehosting.sites.update
+[debug] [2023-11-28T05:15:45.777Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/bootcamp-ce748 [none]
+[debug] [2023-11-28T05:15:46.090Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/bootcamp-ce748 403
+[debug] [2023-11-28T05:15:46.090Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/bootcamp-ce748 {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2023-11-28T05:15:46.091Z] HTTP Error: 403, The caller does not have permission
+[debug] [2023-11-28T05:15:46.191Z] FirebaseError: HTTP Error: 403, The caller does not have permission
+    at responseToError (/usr/local/lib/node_modules/firebase-tools/lib/responseToError.js:49:12)
+    at RetryOperation._fn (/usr/local/lib/node_modules/firebase-tools/lib/apiv2.js:285:77)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project bootcamp-ce748. Please make sure the project exists and your account has permission to access it.

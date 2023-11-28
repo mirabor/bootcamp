@@ -1,7 +1,7 @@
 import React from 'react';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
-import { Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,10 +16,8 @@ class App extends React.Component {
   }
 
   addCard = card => {
-    if (card.front.trim() !== '' && card.back.trim() !== '') {
-      const cards = this.state.cards.slice().concat(card);
-      this.setState({ cards });
-    }
+    const cards = this.state.cards.slice().concat(card);
+    this.setState({ cards });
   };
 
   deleteCard = index => {
@@ -27,7 +25,6 @@ class App extends React.Component {
     cards.splice(index, 1);
 
     if (cards.length === 0) {
-      // Prevent removing all cards
       cards.push({ front: 'Default Front', back: 'Default Back' });
     }
 
@@ -36,7 +33,6 @@ class App extends React.Component {
       cardIndex: Math.min(prevState.cardIndex, cards.length - 1),
     }));
   };
-
 
   goToNextCard = () => {
     this.setState(prevState => ({
@@ -50,21 +46,14 @@ class App extends React.Component {
     }));
   };
 
-
   render() {
     return (
-      <Switch>
-        <Route exact path="/editor">
-          <CardEditor
-            addCard={this.addCard}
-            cards={this.state.cards}
-            deleteCard={this.deleteCard}
-          />
-        </Route>
-        <Route exact path="/viewer">
-          <CardViewer cards={this.state.cards} />
-        </Route>
-      </Switch>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
+          <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
+        </Routes>
+      </BrowserRouter>
     );
   }
 }
