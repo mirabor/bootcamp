@@ -1,5 +1,6 @@
 import React from 'react';
 import './CardEditor.css';
+import { Link } from 'react-router-dom';
 
 class CardEditor extends React.Component {
   constructor(props) {
@@ -14,8 +15,7 @@ class CardEditor extends React.Component {
 
   deleteCard = index => this.props.deleteCard(index);
 
-  handleChange = event =>
-    this.setState({ [event.target.name]: event.target.value });
+  handleChange = event => this.setState({ [event.target.name]: event.target.value });
 
   render() {
     const cards = this.props.cards.map((card, index) => {
@@ -58,7 +58,7 @@ class CardEditor extends React.Component {
         />
         <button onClick={this.addCard}>Add card</button>
         <hr />
-        <button onClick={this.props.switchMode}>Go to card viewer</button>
+        <Link to="/viewer">Go to card viewer</Link>
       </div>
     );
   }
