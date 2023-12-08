@@ -23,23 +23,25 @@ class CardViewer extends React.Component {
       goToPrevCard,
     } = this.props;
 
-    const isNextDisabled = cardIndex === totalCards - 1;
-    const isPrevDisabled = cardIndex === 0;
+    // const isNextDisabled = cardIndex === totalCards - 1;
+    // const isPrevDisabled = cardIndex === 0;
+
+    console.log(this.props.cards[0])
 
     return (
       <div>
         <h2>Card Viewer</h2>
         <hr />
         <div>
-          <div>{`Card ${cardIndex + 1}/${totalCards}`}</div>
-          <div>
-            <button onClick={goToPrevCard} disabled={isPrevDisabled}>
+          {/* <div>{`Card ${cardIndex + 1}/${totalCards}`}</div>
+          <div> */}
+            {/* <button onClick={goToPrevCard} disabled={isPrevDisabled}>
               Previous Card
-            </button>
-            <button onClick={goToNextCard} disabled={isNextDisabled}>
+            </button> */}
+            {/* <button onClick={goToNextCard} disabled={isNextDisabled}>
               Next Card
-            </button>
-          </div>
+            </button> */}
+          {/* </div> */}
           <div>
             <Routes>
               <Route path="/editor" element={<span>Go to card editor</span>} />
@@ -54,14 +56,14 @@ class CardViewer extends React.Component {
                 <React.Fragment>
                   <div className="front-content">
                     <h3 className="flashcard-title">Front card</h3>
-                    <p>{currentCard.front}</p>
+                    <p>{this.props.cards[0].front}</p>
                   </div>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
                   <div className="back-content">
                     <h3 className="flashcard-title">Back card</h3>
-                    <p>{currentCard.back}</p>
+                    <p>{this.props.cards[0].back}</p>
                   </div>
                 </React.Fragment>
               )}

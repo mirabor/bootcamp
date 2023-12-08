@@ -3,6 +3,8 @@ import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+// I am so very confused
+
 class App extends React.Component {
   constructor(props) {
     super(props);
