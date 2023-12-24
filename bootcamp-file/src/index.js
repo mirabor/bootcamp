@@ -9,6 +9,7 @@ import {
   firebaseReducer,
 } from 'react-redux-firebase';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import 'firebase/database';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

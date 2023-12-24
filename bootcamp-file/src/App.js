@@ -57,7 +57,7 @@ class App extends React.Component {
           {/* <Route path="/" element={<Homepage />} /> */}
           <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
           <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
-          <Route path="/test/:id" element ={<Test test="asdf" />} />
+          <Route path="/test/:id" element ={<Test />} />
         </Routes>
       </BrowserRouter>
     );
