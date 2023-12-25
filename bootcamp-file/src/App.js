@@ -1,11 +1,9 @@
 import React from 'react';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
-import { Routes, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Homepage from './Homepage';
 import Test from './Test';
-
-// I am so very confused
 
 class App extends React.Component {
   constructor(props) {
@@ -52,12 +50,25 @@ class App extends React.Component {
 
   render() {
     return (
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
-        <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
-        <Route path="/test/:id" element ={<Test test="asdf" />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/">
+          <Homepage />
+        </Route>
+        <Route exact path="/editor">
+          <CardEditor
+            addCard={this.addCard}
+            cards={this.state.cards}
+            deleteCard={this.deleteCard}
+          />
+        </Route>
+        <Route exact path="/viewer">
+          <CardViewer cards={this.state.cards} />
+        </Route>
+        <Route path="/test/:id">
+          <Test test="asdf" />
+          <Test />
+        </Route>
+      </Switch>
     );
   }
 }

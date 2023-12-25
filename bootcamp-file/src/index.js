@@ -1,23 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
+import { initializeApp } from 'firebase/app';
+
+import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import firebase from 'firebase/app';
+import 'firebase/database';
 import { createStore, combineReducers } from 'redux';
 import {
   ReactReduxFirebaseProvider,
   firebaseReducer,
 } from 'react-redux-firebase';
-// import { composeWithDevTools } from 'redux-devtools-extension';
-import 'firebase/database';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore } from 'firebase/firestore';
-
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCnJOKtEmy-2P9cYVTCSXBBpSzPN3iJtGk",
   authDomain: "bootcamp-6d8fe.firebaseapp.com",
@@ -27,16 +24,15 @@ const firebaseConfig = {
   appId: "1:234774164778:web:95639a3005543fc6b11a53"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const firebase = app;
+const firebaseApp = initializeApp(firebaseConfig);
 
+// Add firebase to reducers
 const rootReducer = combineReducers({
   firebase: firebaseReducer,
 });
 
 // Create store with reducers and initial state
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -44,18 +40,18 @@ const rrfConfig = {
 };
 
 const rrfProps = {
-  firebase,
+  firebase: firebaseApp,
   config: rrfConfig,
   dispatch: store.dispatch,
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <Provider store={store}>
+ReactDOM.render(
+  <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </ReactReduxFirebaseProvider>
-  </Provider>
+  </Provider>,
+  document.getElementById('root'),
 );

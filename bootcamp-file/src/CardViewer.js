@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardViewer.css';
-import { Routes, Route } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 
 class CardViewer extends React.Component {
   constructor(props) {
@@ -23,29 +23,17 @@ class CardViewer extends React.Component {
       goToPrevCard,
     } = this.props;
 
-    // const isNextDisabled = cardIndex === totalCards - 1;
-    // const isPrevDisabled = cardIndex === 0;
-
-    console.log(this.props.cards[0])
+    console.log(this.props.cards[0]);
 
     return (
       <div>
         <h2>Card Viewer</h2>
         <hr />
         <div>
-          {/* <div>{`Card ${cardIndex + 1}/${totalCards}`}</div>
-          <div> */}
-            {/* <button onClick={goToPrevCard} disabled={isPrevDisabled}>
-              Previous Card
-            </button> */}
-            {/* <button onClick={goToNextCard} disabled={isNextDisabled}>
-              Next Card
-            </button> */}
-          {/* </div> */}
           <div>
-            <Routes>
-              <Route path="/editor" element={<span>Go to card editor</span>} />
-            </Routes>
+            {/* Previous and Next buttons */}
+            {/* Use Link instead of button for navigation */}
+            <Link to={`/editor`}>Go to card editor</Link>
           </div>
         </div>
         <hr />
@@ -70,6 +58,11 @@ class CardViewer extends React.Component {
             </div>
           </div>
         </div>
+
+        {/* Define your routes outside of the main component */}
+        <Switch>
+          <Route path="/editor" render={() => <span>Go to card editor</span>} />
+        </Switch>
       </div>
     );
   }
