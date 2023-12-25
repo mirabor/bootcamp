@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { createStore, combineReducers } from 'redux';
 import {
   ReactReduxFirebaseProvider,
   firebaseReducer,
 } from 'react-redux-firebase';
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension';
+import 'firebase/database';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -35,7 +36,7 @@ const rootReducer = combineReducers({
 });
 
 // Create store with reducers and initial state
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer);
 
 // react-redux-firebase config
 const rrfConfig = {
@@ -48,14 +49,13 @@ const rrfProps = {
   dispatch: store.dispatch,
 };
 
-ReactDOM.render(
-<Provider store={store}>
-  <ReactReduxFirebaseProvider {...rrfProps}>
-    <Router>
-      <App />
-    </Router>
-  </ReactReduxFirebaseProvider>
-</Provider>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
+  </Provider>
 );
-

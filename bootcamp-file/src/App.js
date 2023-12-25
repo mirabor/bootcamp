@@ -1,7 +1,7 @@
 import React from 'react';
 import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Homepage from './Homepage';
 
 // I am so very confused
@@ -51,13 +51,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Homepage />} /> */}
-          <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
-          <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
+        <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
+      </Routes>
     );
   }
 }
