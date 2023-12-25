@@ -3,6 +3,7 @@ import CardEditor from './CardEditor';
 import CardViewer from './CardViewer';
 import { Routes, Route } from 'react-router-dom';
 import Homepage from './Homepage';
+import Test from './Test';
 
 // I am so very confused
 
@@ -55,6 +56,7 @@ class App extends React.Component {
         <Route path="/" element={<Homepage />} />
         <Route path="/editor" element={<CardEditor addCard={this.addCard} cards={this.state.cards} deleteCard={this.deleteCard} />} />
         <Route path="/viewer" element={<CardViewer cards={this.state.cards} />} />
+        <Route path="/test/:id" element ={<Test test="asdf" />} />
       </Routes>
     );
   }
