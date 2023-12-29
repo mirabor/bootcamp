@@ -70,7 +70,7 @@ class CardViewer extends React.Component {
   flipCard = () => this.setState({ displayFront: !this.state.displayFront });
 
   shuffleCards = () => {
-    // before mutating state, always make a copy!
+    // making copy before mutating
     const cards = this.state.cards.slice();
 
     // Durstenfeld shuffle from
