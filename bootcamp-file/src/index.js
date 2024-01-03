@@ -18,6 +18,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const firebaseConfig = {
   apiKey: "AIzaSyCnJOKtEmy-2P9cYVTCSXBBpSzPN3iJtGk",
   authDomain: "bootcamp-6d8fe.firebaseapp.com",
+  databaseURL: "https://bootcamp-6d8fe-default-rtdb.firebaseio.com",
   projectId: "bootcamp-6d8fe",
   storageBucket: "bootcamp-6d8fe.appspot.com",
   messagingSenderId: "234774164778",
