@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -24,8 +24,10 @@ const firebaseConfig = {
   appId: "1:234774164778:web:95639a3005543fc6b11a53"
 };
 
-const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const app = firebase.initializeApp(firebaseConfig);
+console.log('Firebase initialized:', app);
+const database = app.database();
+console.log('Firebase Database initialized:', database);
 
 // Add firebase to reducers
 const rootReducer = combineReducers({
@@ -42,7 +44,7 @@ const rrfConfig = {
 
 const rrfProps = {
   firebase: app,
-  database: database,
+  database,
   config: rrfConfig,
   dispatch: store.dispatch,
 };

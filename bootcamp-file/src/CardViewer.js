@@ -84,7 +84,7 @@ class CardViewer extends React.Component {
   };
 
   render() {
-    if (!isLoaded(this.state.cards)) {
+    if (!isLoaded(this.props.cards)) {
       return <div>Loading...</div>;
     }
 
