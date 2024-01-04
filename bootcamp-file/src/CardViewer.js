@@ -101,7 +101,7 @@ class CardViewer extends React.Component {
     return (
       <div>
         <h2>{this.props.name}</h2>
-        Card {this.state.currentIndex + 1} out of {this.state.cards.length}.
+        Card {this.state.currentIndex + 1} out of {this.state.cards.length}
         <div className="card" onClick={this.flipCard}>
           {card}
         </div>
@@ -110,7 +110,7 @@ class CardViewer extends React.Component {
           disabled={this.state.currentIndex === 0}
           onClick={this.prevCard}
         >
-          Prev card
+          Previous card
         </button>
         <button
           disabled={this.state.currentIndex === this.state.cards.length - 1}
