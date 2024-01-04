@@ -2,12 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
 
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
-import firebase from 'firebase/app';
-import 'firebase/database';
 import { createStore, combineReducers } from 'redux';
 import {
   ReactReduxFirebaseProvider,
@@ -25,7 +24,8 @@ const firebaseConfig = {
   appId: "1:234774164778:web:95639a3005543fc6b11a53"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
 // Add firebase to reducers
 const rootReducer = combineReducers({
@@ -41,7 +41,8 @@ const rrfConfig = {
 };
 
 const rrfProps = {
-  firebase: firebaseApp,
+  firebase: app,
+  database: database,
   config: rrfConfig,
   dispatch: store.dispatch,
 };
